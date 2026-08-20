@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For Yeji</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="atmosphere" aria-hidden="true"></div>
+
+    <main id="app" class="app">
+      <!-- 1. Hero -->
+      <section class="scene scene--hero is-active" data-scene="hero" aria-label="Welcome">
+        <div class="hero">
+          <p class="hero__line" data-bind="hero.line"></p>
+          <h1 class="hero__name" data-bind="name"></h1>
+          <button type="button" class="btn" data-action="next" data-bind-text="hero.cta"></button>
+        </div>
+      </section>
+
+      <!-- 2. Instructions -->
+      <section class="scene" data-scene="instructions" aria-label="Instructions" hidden>
+        <div class="panel">
+          <h2 class="panel__title" data-bind="instructions.title"></h2>
+          <p class="panel__body" data-bind="instructions.body"></p>
+          <button type="button" class="btn" data-action="next" data-bind-text="instructions.cta"></button>
+        </div>
+      </section>
+
+      <!-- 3–5. Tease + envelope + letter -->
+      <section class="scene" data-scene="letter" aria-label="Letter" hidden>
+        <div class="letter-stage">
+          <p class="tease" data-bind="tease"></p>
+
+          <div class="envelope" data-envelope aria-hidden="true">
+            <div class="envelope__back"></div>
+            <div class="envelope__letter" data-letter-sheet>
+              <div class="photo-slot photo-slot--letter" data-photo="letter.photo">
+                <span class="photo-slot__label">Add photo<br /><code>assets/photos/letter.jpg</code></span>
+                <img alt="" hidden />
+              </div>
+              <p class="letter__message" data-bind="letter.message"></p>
+            </div>
+            <div class="envelope__front"></div>
+            <div class="envelope__flap"></div>
+            <p class="envelope__tag">For <span data-bind="name"></span></p>
+          </div>
+
+          <button type="button" class="btn btn--continue" data-action="next" hidden>
+            Continue
+          </button>
+        </div>
+      </section>
+
+      <!-- 6. Ten reasons intro + list -->
+      <section class="scene" data-scene="reasons" aria-label="Ten reasons" hidden>
+        <div class="reasons">
+          <h2 class="reasons__intro" data-bind="reasonsIntro"></h2>
+          <ol class="reasons__list" data-reasons-list></ol>
+          <button type="button" class="btn" data-action="next">Continue</button>
+        </div>
+      </section>
+
+      <!-- 7–8. Twist + sixteen more -->
+      <section class="scene" data-scene="more" aria-label="Sixteen more reasons" hidden>
+        <div class="reasons">
+          <h2 class="reasons__intro reasons__intro--twist" data-bind="twist"></h2>
+          <ol class="reasons__list" data-more-reasons-list start="11"></ol>
+          <button type="button" class="btn" data-action="next">Continue</button>
+        </div>
+      </section>
+
+      <!-- 9. Quiz -->
+      <section class="scene" data-scene="quiz" aria-label="Quiz" hidden>
+        <div class="quiz">
+          <p class="quiz__eyebrow" data-bind="quizIntro"></p>
+          <div class="quiz__progress" data-quiz-progress></div>
+          <h2 class="quiz__question" data-quiz-question></h2>
+          <div class="quiz__options" data-quiz-options></div>
+          <p class="quiz__reply" data-quiz-reply hidden></p>
+          <button type="button" class="btn" data-quiz-next hidden>Next</button>
+        </div>
+      </section>
+
+      <!-- 10. Finale -->
+      <section class="scene" data-scene="finale" aria-label="Finale" hidden>
+        <div class="finale">
+          <div class="photo-slot photo-slot--finale" data-photo="finale.photo">
+            <span class="photo-slot__label">Add photo<br /><code>assets/photos/finale.jpg</code></span>
+            <img alt="" hidden />
+          </div>
+          <p class="finale__message" data-bind="finale.message"></p>
+          <p class="finale__signoff">— with love</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

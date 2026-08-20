@@ -1,0 +1,7 @@
+[project]
+name = "yeji-2026"
+version = "0.1.0"
+description = "Fun little website for Yeji's birthday — open index.html (static site in /)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
