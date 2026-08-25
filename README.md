@@ -1,6 +1,6 @@
 # yeji-2026
 
-A small birthday website — landing → letter → two notes → 26 reasons → quiz → finale.
+A small birthday website — landing → letter → two notes → reasons → quiz → finale.
 
 ## Run locally
 
@@ -25,7 +25,7 @@ Edit **`js/config.js`**:
 - `hero.korean` — Korean follow-up after the landing
 - `card` — open message, note, photo path
 - `afterLetter` — two single-text pages after the letter
-- `reasons` (10) + `moreReasons` (16) — `{ text, photo }` per page
+- `reasons` + `moreReasons` — `{ text, photos: [] }` per page (related pics share a page)
 - `quiz` — 5 questions
 - `nav` — back / next labels
 
