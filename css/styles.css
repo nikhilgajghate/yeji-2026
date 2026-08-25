@@ -121,31 +121,65 @@ body {
 
 .reason-page {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(15rem, 32vw, 30rem) minmax(0, 1fr);
   align-items: center;
-  gap: 1.25rem;
+  justify-items: center;
+  gap: clamp(0.75rem, 2.5vw, 2rem);
 }
 
-.reason-photos {
-  --collage-aspect: 1.2;
-  position: relative;
+.reason-side {
+  --tile-w: min(100%, 13rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  /* Fixed gap so a 50% tile width lands exactly two per row. */
+  gap: 1rem;
   width: 100%;
-  max-width: min(42rem, calc(58vh * var(--collage-aspect)));
-  aspect-ratio: var(--collage-aspect);
-  margin-inline: auto;
-  overflow: visible;
+}
+
+.reason-side--left {
+  grid-column: 1;
+}
+
+.reason-copy {
+  grid-column: 2;
+}
+
+.reason-side--right {
+  grid-column: 3;
+}
+
+/* Nudge every other photo inward so the columns read as scattered. */
+.reason-side--left .reason-photos__item:nth-child(even) {
+  --nudge-x: 1rem;
+  --nudge-y: 0.4rem;
+}
+
+.reason-side--right .reason-photos__item:nth-child(even) {
+  --nudge-x: -1rem;
+  --nudge-y: 0.4rem;
 }
 
 .reason-photos__item {
-  position: absolute;
+  position: relative;
+  width: var(--tile-w);
+  aspect-ratio: 3 / 4;
   border-radius: 0.7rem;
   box-shadow: 0 10px 22px color-mix(in oklab, var(--color-neutral) 18%, transparent);
   background: var(--color-base-100);
   --rot: 0deg;
+  --nudge-x: 0px;
+  --nudge-y: 0px;
   --drag-x: 0px;
   --drag-y: 0px;
-  transform: translate(var(--drag-x), var(--drag-y)) rotate(var(--rot));
+  transform: translate(
+      calc(var(--nudge-x) + var(--drag-x)),
+      calc(var(--nudge-y) + var(--drag-y))
+    )
+    rotate(var(--rot));
   cursor: grab;
   touch-action: none;
   user-select: none;
@@ -168,26 +202,11 @@ body {
   pointer-events: none;
 }
 
-.reason-photos__item--solo {
-  position: relative;
-  width: min(100%, 16rem);
-  aspect-ratio: 4 / 5;
-}
-
-.reason-photos--1 {
-  aspect-ratio: auto;
-  max-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .reason-copy {
   position: relative;
   /* Below the sticky nav (z-20) so it scrolls behind the buttons. */
   z-index: 5;
-  width: min(100%, 40rem);
-  margin-inline: auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -244,11 +263,24 @@ body {
   color: var(--color-base-content);
 }
 
-@media (max-width: 640px) {
-  .reason-photos:not(.reason-photos--1) {
-    max-width: min(100%, calc(46vh * var(--collage-aspect)));
+/* Too narrow for side columns — stack the photos above and below instead. */
+@media (max-width: 900px) {
+  .reason-page {
+    grid-template-columns: minmax(0, 1fr);
   }
 
+  .reason-side--left,
+  .reason-copy,
+  .reason-side--right {
+    grid-column: 1;
+  }
+
+  .reason-photos__item {
+    width: min(42%, 10rem);
+  }
+}
+
+@media (max-width: 640px) {
   .reason-copy {
     gap: 0.6rem;
     padding: 1.15rem 1.1rem 1.25rem;

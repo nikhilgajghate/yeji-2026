@@ -50,63 +50,46 @@
     return escapeHtml(str).replaceAll("\n", "<br />");
   }
 
-  function reasonPhotos(item) {
-    if (!item || typeof item === "string") return "";
-    const paths = Array.isArray(item.photos)
-      ? item.photos.filter(Boolean)
-      : item.photo
-        ? [item.photo]
-        : [];
-    if (!paths.length) return "";
-
-    const list = paths.slice(0, 6);
-    const count = list.length;
-
-    if (count === 1) {
-      const solo = photoSlot(
-        list[0],
-        "reason-photos__item reason-photos__item--solo",
-        list[0]
-      );
-      return `<div class="reason-photos reason-photos--1">${solo}</div>`;
+  /** Splits a reason's photos into the two columns that flank the text. */
+  function reasonPhotoSides(item) {
+    const columns = [[], []];
+    if (item && typeof item !== "string") {
+      const paths = Array.isArray(item.photos)
+        ? item.photos.filter(Boolean)
+        : item.photo
+          ? [item.photo]
+          : [];
+      const tilts = [-4, 3, -2, 4, -3, 2];
+      paths.forEach((path, i) => {
+        const slot = photoSlot(
+          path,
+          "reason-photos__item",
+          path,
+          `--rot:${tilts[i % tilts.length]}deg`
+        );
+        columns[i % 2].push(slot);
+      });
     }
 
-    /** How many tiles sit on each row, so nothing has to overlap. */
-    const rowPlans = { 2: [2], 3: [3], 4: [2, 2], 5: [3, 2], 6: [3, 3] };
-    const rows = rowPlans[count];
-    const columns = Math.max(...rows);
+    return {
+      left: reasonSide("left", columns[0]),
+      right: reasonSide("right", columns[1]),
+    };
+  }
 
-    // Percentages below are all relative to the collage width.
-    const gap = 4;
-    const tileWidth = (100 - gap * (columns + 1)) / columns;
-    const tileHeight = tileWidth * (4 / 3);
-    const totalHeight = rows.length * tileHeight + (rows.length + 1) * gap;
-    const tilts = [-3, 2, -2, 3, -4, 2];
-
-    let placed = 0;
-    const slots = rows
-      .map((tilesInRow, rowIndex) => {
-        const rowWidth = tilesInRow * tileWidth + (tilesInRow - 1) * gap;
-        const rowLeft = (100 - rowWidth) / 2;
-        const rowTop = gap + rowIndex * (tileHeight + gap);
-
-        return Array.from({ length: tilesInRow }, (_, columnIndex) => {
-          const path = list[placed];
-          const style = [
-            `left:${(rowLeft + columnIndex * (tileWidth + gap)).toFixed(2)}%`,
-            `top:${((rowTop / totalHeight) * 100).toFixed(2)}%`,
-            `width:${tileWidth.toFixed(2)}%`,
-            `height:${((tileHeight / totalHeight) * 100).toFixed(2)}%`,
-            `--rot:${tilts[placed % tilts.length]}deg`,
-          ].join(";");
-          placed += 1;
-          return photoSlot(path, "reason-photos__item", path, style);
-        }).join("");
-      })
-      .join("");
-
-    const aspect = (100 / totalHeight).toFixed(3);
-    return `<div class="reason-photos reason-photos--${count}" style="--collage-aspect:${aspect}">${slots}</div>`;
+  function reasonSide(side, slots) {
+    // One or two photos get to be big; past that they pair up two per row.
+    const width =
+      slots.length === 1
+        ? "min(100%, 13rem)"
+        : slots.length === 2
+          ? "min(100%, 11rem)"
+          : "calc(50% - 0.5rem)";
+    return `
+      <div class="reason-side reason-side--${side}" style="--tile-w:${width}">
+        ${slots.join("")}
+      </div>
+    `;
   }
 
   function photoSlot(path, aspectClass, labelPath, style = "") {
@@ -332,13 +315,15 @@
     const n = offset + index;
     const item = list[index];
     const text = typeof item === "string" ? item : item?.text || "";
+    const sides = reasonPhotoSides(item);
     return `
-      <div class="reason-page mx-auto w-full max-w-3xl text-center">
-        ${reasonPhotos(item)}
+      <div class="reason-page mx-auto w-full max-w-6xl text-center">
+        ${sides.left}
         <div class="reason-copy">
           <span class="reason-copy__badge">Reason ${n}</span>
           <p class="reason-copy__text">${escapeHtml(text)}</p>
         </div>
+        ${sides.right}
       </div>
     `;
   }
