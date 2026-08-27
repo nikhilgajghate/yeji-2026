@@ -5,6 +5,12 @@
 window.YEJI_CONFIG = {
   name: "Yeji",
 
+  /** Background music — drop an mp3 at this path (see assets/audio/) */
+  music: {
+    src: "assets/audio/where do broken hearts go.mp3",
+    volume: 0.35,
+  },
+
   nav: {
     back: "Gaurrr back babygoorlll?",
     next: "okay..?",
@@ -93,6 +99,15 @@ window.YEJI_CONFIG = {
       ],
     },
     {
+      text: "You are a great driver! Normally, I don't feel comfortable sitting in the passenger seat of vehicles being driven around by friends or random people but you drive so smoothly and I feel so safe and comfortable in your hands. I only feel that way towards few people and I'm glad you're one of them",
+      photos: [
+        "assets/photos/good driver.jpeg",
+        "assets/photos/good driver pt 2.jpeg",
+        "assets/photos/good driver pt 3.jpeg",
+        "assets/photos/good driver pt 4.jpeg",
+      ],
+    },
+    {
       text: "You have a great fashion sense. No really you have a great fashion sense and because you're so pretty, you look great in anything you wear. Anything!",
       photos: [
         "assets/photos/you have a great fashion sense.jpeg",
@@ -115,7 +130,10 @@ window.YEJI_CONFIG = {
     },
     {
       text: "We are a unique couple lol but not this night. Remember we saw another asian girl with a brown guy?! Fweaakinn obviously we looked muuuuch better together",
-      photos: ["assets/photos/we are a unique couple.jpeg"],
+      photos: [
+        "assets/photos/we are a unique couple.jpeg",
+        "assets/photos/unique couple pt 2.jpeg",
+      ],
     },
     {
       text: "You look so peaceful when you take naps. You don't see this obviously but I only take photos because I like how peaceful you look as opposed to how much yapapyapyap you are when you're awake",
@@ -158,7 +176,12 @@ window.YEJI_CONFIG = {
     },
     {
       text: "You are very ambitious. I like that you're working on Bamboo as much as it makes you tired. To make the decision to work on something outside of your 9-5 takes a lot of ambition and courage and I'm very proud of you for that. It inspires me to work just as hard and be just as ambitious",
-      photos: ["assets/photos/ambitious couple.jpeg"],
+      photos: [
+        "assets/photos/ambitious couple.jpeg",
+        "assets/photos/ambition pt 2.jpeg",
+        "assets/photos/ambition pt 3.jpeg",
+        "assets/photos/ambition pt 4.jpeg",
+      ],
     },
     {
       text: "You are very witty. You're so quick and intelligent that it is very evident in your humor and how you speak",
@@ -166,67 +189,103 @@ window.YEJI_CONFIG = {
         "assets/photos/witty.jpeg",
         "assets/photos/witty pt 2.jpeg",
         "assets/photos/witty pt 3.jpeg",
+        "assets/photos/witty pt 4.jpeg",
       ],
     },
     {
       text: "You get along with so many people and you are so friendly! I had 0 doubt of you getting along with my friends during my birthday party and Caleb's wedding. I am serious when I tell you that I felt very happy and warm to see you getting along with everyone",
-      photos: ["assets/photos/good with friends.jpeg"],
+      photos: [
+        "assets/photos/good with friends.jpeg",
+        "assets/photos/friends pt 2.jpeg",
+      ],
     },
     {
       text: "You are a very clean person. Your room, your bathroom, your car are always soo clean and tidy. It feels nice to be in your space and your presence and feel clean and relaxed. Even in my studio, you always keep it clean and tidy by using that roller we got from Target. It's especially cute when you start rolling minutes after you drive 5 hours from MN. It's the little things that make a big difference bubu",
       photos: [
-        
+        "assets/photos/clean person.jpeg",
+        "assets/photos/clean person pt 2.jpeg",
+        "assets/photos/clean person pt 3.jpeg",
+        "assets/photos/clean person pt 4.jpeg",
       ],
     },
     {
       text: "You are very logical when it comes to serious matters. When handling important and serious matters, I like that you think things through before making a decision. You take your time to think about pros and cons and make the best decision for the situation. That is a very good trait to have.",
-      photos: ["assets/photos/takes time to think.jpeg"],
+      photos: [
+        "assets/photos/takes time to think.jpeg",
+        "assets/photos/logical pt 2.jpeg",
+        "assets/photos/logical pt 3.jpeg",
+        "assets/photos/logical pt 4.jpeg",
+      ],
     },
     {
-      text: "I love that you're a dog person too. I'm a dog person too.",
-      photos: ["assets/photos/dogs.jpeg"],
+      text: "I love that you're a dog person too. I'm a dog person too. In fact, I think you are great with all animals and that's a massive green flagg",
+      photos: [
+        "assets/photos/dogs.jpeg",
+        "assets/photos/animal pt 2.jpeg",
+        "assets/photos/animal pt 3.jpeg",
+      ],
     },
     {
       text: "You're in the tech field. This makes it soo much easier to explain my work frustrations to you. I don't have to explain my industry from scratch. You understand all the jargon and it makes it soo much easier to communicate.",
       photos: [
         "assets/photos/tech field.jpeg",
         "assets/photos/tech field pt 2.jpeg",
+        "assets/photos/tech field pt 3.jpeg",
+        "assets/photos/tech field pt 4.jpeg",
       ],
     },
     {
       text: "You like Coffee ice cream! I love that both you and I were able to find a common interest in Van Leeuwen's Coffee ice cream. You introduced me to the brand and I introduced you to the flavor. We wouldn't have found this common interest if it wasn't for you bubu!!",
       photos: [
-        
+        "assets/photos/coffee ice cream.jpeg",
+        "assets/photos/coffee ice cream pt 2.jpeg",
       ],
     },
     {
       text: "About 3 months into our relationship, we went on a roadtrip that was 8 hours long. Usually, I've heard couples complain about how long the drive is. I've never heard you complain about the drive. You were soo calm and relaxed the entire time. Again lol you napped the entire time.. but it was great! While you were awake, you were soo good at keeping me entertained and distracted from the long drive. You're a very good travel buddy bubu!",
       photos: [
-        
+        "assets/photos/travel couple.jpeg",
+        "assets/photos/travel couple pt 2.jpeg",
+        "assets/photos/travel couple pt 3.jpeg",
+        "assets/photos/travel couple pt 4.jpeg",
       ],
     },
     {
       text: "I am by no means a great cook but I find it so satisfying when you like the food I cook for us! I genuinely enjoy cooking as a hobby and to do that for my partner, makes it special and add to that how you react to my food, makes it a great feeling!!",
       photos: [
-        
+        "assets/photos/reason 23.jpeg",
+        "assets/photos/reason 23 pt 2.jpeg",
+        "assets/photos/reason 23 pt 3.jpeg",
+        "assets/photos/reason 23 pt 4.jpeg",
       ],
     },
     {
       text: "You are a great cook too!! I love that you can make me good asian snacks. I love your cold noodles and the ramen you make me! Your japchae was great too! I love that you enjoy eating fruits and veggies and that whenever we get them from Metro or Costco, you start cutting them. Every time I see you doing household chores, it brings a smile to my face because I know you're doing it for me and I appreciate it so much!",
       photos: [
-        
+        "assets/photos/great cook.jpeg",
+        "assets/photos/reason 24 pt 2.jpeg",
+        "assets/photos/reason 24 pt 3.jpeg",
+        "assets/photos/reason 24 pt 4.jpeg",
       ],
     },
     {
       text: "You are good when it comes to finances! I'm glad that you and I can have conversations about money and that you recommend I invest in Gold. I like finance and I like having conversations around being financially responsible and being financially ready for the future. I like that I can have those conversations with you",
       photos: [
-        
+        "assets/photos/finances pt 1.jpeg",
+        "assets/photos/finances pt 2.jpeg",
+        "assets/photos/finances pt 3.jpeg",
+        "assets/photos/finances pt 4.jpeg",
       ],
     },
     {
       text: "Last but certainly not the least, you are the best because YOU ARE A STRONG AND AN INDEPENDENT WOMAN!!!!",
       photos: [
-        
+        "assets/photos/reason 26.jpeg",
+        "assets/photos/reason 26 pt 2.jpeg",
+        "assets/photos/reason 26 pt 3.jpeg",
+        "assets/photos/reason 26 pt 4.jpeg",
+        "assets/photos/reason 26 pt 5.jpeg",
+        "assets/photos/reason 26 pt 6.jpeg",
       ],
     }
   ],
@@ -245,21 +304,21 @@ window.YEJI_CONFIG = {
     {
       question: "Question 2 - What is boifweeenn's major in college?",
       options: ["MS in Computer Science", "MS in Software Engineering", "MS in Machine Learning", "MS in Computer and Informational Science"],
-      correctIndex: 4,
+      correctIndex: 3,
       correctReply: "Yettttuhh so proud of you! <3",
       wrongReply: "Hmm… but cute try.",
     },
     {
       question: "Question 3 - When did we start dating?",
       options: ["March 10, 2026", "Feb 14, 2026", "March 12, 2026", "December 18, 2025"],
-      correctIndex: 3,
+      correctIndex: 2,
       correctReply: "Nailed it.",
       wrongReply: "Fweaaakkinell, you're paying for EE-Sane next time.",
     },
     {
       question: "Question 4 - What is gulfwen's next car",
       options: ["BMW", "Audi", "Mercedes-Benz", "Porsche"],
-      correctIndex: 0,
+      correctIndex: 3,
       correctReply: "Yetttttuhh",
       wrongReply: "Yetttttuhh",
     },

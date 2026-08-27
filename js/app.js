@@ -81,9 +81,9 @@
     // One or two photos get to be big; past that they pair up two per row.
     const width =
       slots.length === 1
-        ? "min(100%, 13rem)"
+        ? "min(100%, 18rem)"
         : slots.length === 2
-          ? "min(100%, 11rem)"
+          ? "min(100%, 15rem)"
           : "calc(50% - 0.5rem)";
     return `
       <div class="reason-side reason-side--${side}" style="--tile-w:${width}">
@@ -317,7 +317,7 @@
     const text = typeof item === "string" ? item : item?.text || "";
     const sides = reasonPhotoSides(item);
     return `
-      <div class="reason-page mx-auto w-full max-w-6xl text-center">
+      <div class="reason-page mx-auto w-full max-w-[96rem] text-center">
         ${sides.left}
         <div class="reason-copy">
           <span class="reason-copy__badge">Reason ${n}</span>
@@ -526,6 +526,7 @@
 
   setupBalloons();
   setupLightbox();
+  setupMusic();
   showStep(0);
 
   function setupLightbox() {
@@ -643,6 +644,69 @@
     balloon.style.animation = "none";
     void balloon.offsetWidth;
     balloon.style.animation = "";
+  }
+
+  function setupMusic() {
+    const musicCfg = config.music;
+    const audio = document.getElementById("bg-music");
+    const btn = document.getElementById("music-toggle");
+    if (!musicCfg?.src || !audio || !btn) return;
+
+    audio.src = musicCfg.src;
+    audio.volume = musicCfg.volume ?? 0.35;
+    audio.loop = true;
+
+    let playing = false;
+
+    function syncButton() {
+      btn.setAttribute("aria-pressed", String(playing));
+      btn.querySelector(".music-toggle__label").textContent = playing ? "Playing" : "Music";
+    }
+
+    async function playMusic() {
+      try {
+        await audio.play();
+        playing = true;
+        syncButton();
+        return true;
+      } catch {
+        return false;
+      }
+    }
+
+    function pauseMusic() {
+      audio.pause();
+      playing = false;
+      syncButton();
+    }
+
+    btn.addEventListener("click", async () => {
+      if (playing) {
+        pauseMusic();
+        return;
+      }
+      await playMusic();
+    });
+
+    audio.addEventListener("canplaythrough", () => {
+      btn.hidden = false;
+      syncButton();
+    });
+
+    audio.addEventListener("error", () => {
+      btn.hidden = true;
+    });
+
+    // Browsers block autoplay — start on the first tap or keypress anywhere.
+    function onFirstInteract() {
+      if (playing || btn.hidden) return;
+      playMusic();
+      document.removeEventListener("click", onFirstInteract);
+      document.removeEventListener("keydown", onFirstInteract);
+    }
+
+    document.addEventListener("click", onFirstInteract);
+    document.addEventListener("keydown", onFirstInteract);
   }
 
   function playPopSound() {
